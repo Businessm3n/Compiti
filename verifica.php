@@ -21,22 +21,54 @@ if (!isset($_SESSION['username'])) {
 $nomeUtente = $_POST['username']; // Assumendo che il nome utente sia stato fornito durante la registrazione
 $emailUtente = $_POST['email']; // Assumendo che l'email sia stata fornita durante la registrazione
 
-// Generazione del contenuto della pagina PHP personalizzata
-$phpContent = <<<PHP
-<?php include 'header.php'; ?>
-<h1>Benvenuto, $nomeUtente</h1>
-<p>Email: $emailUtente</p>
-<p>Questa è la tua pagina personale.</p>
-<?php include 'footer.php'; ?>
-PHP;
 
 // Creazione del nome del file per la pagina personalizzata dell'utente
 $nomeFile = strtolower(str_replace(' ', '_', $nomeUtente)) . ".php";
 
-// Scrittura del contenuto nella pagina PHP personalizzata dell'utente
-file_put_contents($nomeFile, $phpContent);
 
 // Reindirizzamento dell'utente alla propria pagina personale
 header("Location: $nomeFile");
 exit();
+
+
 ?>
+
+
+<?php
+session_start();
+
+// Verifica se l'utente è loggato, altrimenti reindirizzalo alla pagina di login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Recupera i dati dell'utente (sostituisci questi dati con quelli reali)
+$username = $_SESSION['username'];
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Welcome, <?php echo $username; ?></h2>
+
+    <h3>Your Profile</h3>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td><?php echo $username; ?></td>
+            <td><?php echo $email; ?></td>
+        </tr>
+    </table>
+</body>
+</html>
