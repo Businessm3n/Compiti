@@ -84,29 +84,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
-</head>
-<body>
-    <h2>Registrazione</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div>
-            <label>Username</label>
-            <input type="text" name="username" value="<?php echo $username; ?>">
-            <span><?php echo $username_err; ?></span>
-        </div>    
-        <div>
-            <label>Password</label>
-            <input type="password" name="password">
-            <span><?php echo $password_err; ?></span>
-        </div>
-        <div>
-            <button type="submit">Registrati</button>
-        </div>
-    </form>
-</body>
-</html>
+
